@@ -165,6 +165,12 @@ function playerRotate(dir) {
   }
 }
 
+const player = {
+  pos: {x : 0, y : 0},
+  matrix: null,
+  score: 0,
+}
+
 function rotate(matrix, dir) {
   for (let y = 0; y < matrix.length; ++y) {
     for (let x = 0; x < y; ++x) {
@@ -186,6 +192,7 @@ function rotate(matrix, dir) {
 
 let dropCounter = 0;
 let dropInterval = 1000;
+  dropInterval = (dropInterval - (player.score * 10));
 
 let lastTime = 0
 function update(time = 0) {
@@ -218,11 +225,7 @@ const color = [
 
 const arena = createMatrix(12, 20);
 
-const player = {
-  pos: {x : 0, y : 0},
-  matrix: null,
-  score: 0,
-}
+
 
 document.addEventListener('keydown', event => {
   if (event.keyCode === 37) {
